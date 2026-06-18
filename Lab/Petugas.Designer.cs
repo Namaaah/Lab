@@ -265,7 +265,7 @@
             btnHapus.FlatStyle = FlatStyle.Flat;
             btnHapus.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnHapus.ForeColor = Color.White;
-            btnHapus.Location = new Point(231, 382);
+            btnHapus.Location = new Point(234, 382);
             btnHapus.Name = "btnHapus";
             btnHapus.Size = new Size(92, 40);
             btnHapus.TabIndex = 26;

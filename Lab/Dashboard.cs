@@ -306,10 +306,20 @@ namespace Lab
 
         private void myButtons1_Click_1(object sender, EventArgs e)
         {
-           
+
             Petugas petugas = new Petugas(this);
             LoadUserControl(petugas);
             MuatActivityLog();
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -227,8 +227,7 @@ namespace Lab
                     $"Umur: \"{umur}\" | Shift: \"{shift}\" | Kelas: \"{kelas}\""
                 );
 
-                MessageBox.Show($"_dashboard null? {_dashboard == null}");
-
+                
                 MuatDataPetugas();
                 RefreshLog();
             }

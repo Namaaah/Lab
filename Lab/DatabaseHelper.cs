@@ -13,6 +13,8 @@ namespace Lab
         private static string dbPath = Path.Combine(
         AppDomain.CurrentDomain.BaseDirectory, "pasien.db");
         private static string connectionString = $"Data Source={dbPath};";
+        private static string logPath = Path.Combine(
+        AppDomain.CurrentDomain.BaseDirectory, "activity_log.txt");
 
         // Buat tabel saat pertama kali
         public static void InitDatabase()
@@ -76,6 +78,8 @@ namespace Lab
             }
 
         }
+
+
         // Simpan data pasien
         public static void SimpanPasien(string nama, string gender, int umur, string golDarah, string penyakit)
         {
@@ -304,37 +308,21 @@ namespace Lab
         // Tambah log
         public static void TambahLog(string keterangan)
         {
-            using (var conn = new SqliteConnection(connectionString))
-            {
-                conn.Open();
-                string query = "INSERT INTO ActivityLog (Waktu, Keterangan) VALUES (@waktu, @ket)";
-                using (var cmd = new SqliteCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@waktu", DateTime.Now.ToString("dd/MM/yyyy HH:mm"));
-                    cmd.Parameters.AddWithValue("@ket", keterangan);
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            string isiLog = $"[{DateTime.Now:dd/MM/yyyy HH:mm}]  {keterangan}";
+            File.AppendAllText(logPath, isiLog, Encoding.UTF8);
         }
 
         // Ambil semua log (terbaru di atas)
         public static List<string> GetActivityLog()
         {
-            var list = new List<string>();
-            using (var conn = new SqliteConnection(connectionString))
-            {
-                conn.Open();
-                string query = "SELECT Waktu, Keterangan FROM ActivityLog ORDER BY Id DESC LIMIT 50";
-                using (var cmd = new SqliteCommand(query, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        list.Add($"[{reader["Waktu"]}]  {reader["Keterangan"]}");
-                    }
-                }
-            }
-            return list;
+            if (!File.Exists(logPath))
+                return new List<string>();
+
+            // Baca semua baris, balik urutannya agar terbaru di atas
+            string[] lines = File.ReadAllLines(logPath, Encoding.UTF8);
+            var logs = new List<string>(lines);
+
+            return logs;
         }
 
         public static Dictionary<string, int> GetTotalPerJenisObat()
@@ -357,6 +345,12 @@ namespace Lab
             }
             return result;
         }
+        public static void ClearLog()
+        {
+            if (File.Exists(logPath))
+                File.WriteAllText(logPath, string.Empty, Encoding.UTF8);
+        }
+
 
     }
 }

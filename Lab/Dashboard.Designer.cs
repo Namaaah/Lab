@@ -496,6 +496,7 @@
             label9.Size = new Size(32, 37);
             label9.TabIndex = 5;
             label9.Text = "0";
+            label9.Click += label9_Click;
             // 
             // pictureBox8
             // 
@@ -697,6 +698,7 @@
             label8.Size = new Size(32, 37);
             label8.TabIndex = 5;
             label8.Text = "0";
+            label8.Click += label8_Click;
             // 
             // pictureBox6
             // 
