@@ -41,11 +41,11 @@ namespace Lab
             DataTable dt = DatabaseHelper.GetSemuaPasien();
             dataGridView1.DataSource = dt;
 
-            // Sembunyikan kolom Id DULU sebelum hitung apapun
+           
             if (dataGridView1.Columns["Id"] != null)
                 dataGridView1.Columns["Id"].Visible = false;
 
-            // Hitung langsung dari DataTable, bukan dari datagrid
+         
             int totalPria = 0;
             int totalWanita = 0;
             foreach (DataRow row in dt.Rows)
@@ -92,9 +92,9 @@ namespace Lab
 
             if (selectedId == -1)
             {
-                // Mode Simpan biasa
+               
                 DatabaseHelper.SimpanPasien(nama, gender, umurInt, darah, penyakit);
-                // ↓ TAMBAH DI SINI
+            
                 DatabaseHelper.TambahLog(
                     $"Admin menambahkan pasien: Nama: \"{nama}\" | Gender: \"{gender}\" | " +
                     $"Umur: \"{umurInt}\" | Gol darah: \"{darah}\" | Penyakit: \"{penyakit}\""
@@ -102,16 +102,16 @@ namespace Lab
             }
             else
             {
-                // ↓ AMBIL DATA LAMA DULU SEBELUM UPDATE
+              
                 string namaLama = dataGridView1.SelectedRows[0].Cells["Nama"].Value?.ToString();
                 string genderLama = dataGridView1.SelectedRows[0].Cells["Gender"].Value?.ToString();
                 string umurLama = dataGridView1.SelectedRows[0].Cells["Umur"].Value?.ToString();
                 string darahLama = dataGridView1.SelectedRows[0].Cells["Gol darah"].Value?.ToString();
                 string penyakitLama = dataGridView1.SelectedRows[0].Cells["Penyakit"].Value?.ToString();
 
-                // Mode Update (HAPUS panggilan UpdatePasien yang kedua di bawah)
+               
                 DatabaseHelper.UpdatePasien(selectedId, nama, gender, umurInt, darah, penyakit);
-                // ↓ TAMBAH DI SINI
+             
                 DatabaseHelper.TambahLog(
                     $"Admin mengubah pasien: Nama: \"{namaLama}\" → \"{nama}\" | " +
                     $"Gender: \"{genderLama}\" → \"{gender}\" | Umur: \"{umurLama}\" → \"{umurInt}\" | " +
@@ -211,7 +211,7 @@ namespace Lab
             selectedId = -1;
             modeEdit = false;
             Buttons2.Text = "Simpan";
-            Buttons2.BackColor = Color.Green; // Sesuaikan warna aslinya
+            Buttons2.BackColor = Color.Orange; // Sesuaikan warna aslinya
         }
 
         private void BersihkanForm()
@@ -234,6 +234,6 @@ namespace Lab
 
         }
 
-
+      
     }
 }

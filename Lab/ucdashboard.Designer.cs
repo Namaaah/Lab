@@ -53,6 +53,8 @@
             label8 = new Label();
             pictureBox6 = new PictureBox();
             label3 = new Label();
+            richTextBox1 = new RichTextBox();
+            label1 = new Label();
             shapedPanel6.SuspendLayout();
             shapedPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
@@ -68,6 +70,8 @@
             // shapedPanel6
             // 
             shapedPanel6.BorderColor = Color.FromArgb(0, 192, 0);
+            shapedPanel6.Controls.Add(richTextBox1);
+            shapedPanel6.Controls.Add(label1);
             shapedPanel6.Controls.Add(label12);
             shapedPanel6.Edge = 30;
             shapedPanel6.Location = new Point(716, 19);
@@ -79,7 +83,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 9F);
-            label12.Location = new Point(50, 51);
+            label12.Location = new Point(37, 51);
             label12.Name = "label12";
             label12.Size = new Size(117, 15);
             label12.TabIndex = 3;
@@ -327,6 +331,24 @@
             label3.TabIndex = 3;
             label3.Text = "Petugas saat ini";
             // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new Point(15, 38);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(152, 57);
+            richTextBox1.TabIndex = 6;
+            richTextBox1.Text = "- version 1.0\n- last update 17/06/2026";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F);
+            label1.Location = new Point(15, 15);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 5;
+            label1.Text = "about";
+            // 
             // ucdashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -385,5 +407,7 @@
         private Label label8;
         private PictureBox pictureBox6;
         private Label label3;
+        private RichTextBox richTextBox1;
+        private Label label1;
     }
 }

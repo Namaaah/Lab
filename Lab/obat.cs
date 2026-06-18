@@ -54,24 +54,24 @@ namespace Lab
 
         private void BersihkanForm()
         {
-            txtobat.Text = "";
+            txtobat.textBox.Text = "";
             cbjenis.SelectedIndex = -1;
-            txtjumlah.Text = "";
-            txtpenyimpanan.Text = "";
+            txtjumlah.textBox.Text = "";
+            txtpenyimpanan.textBox.Text = "";
             dateTimePicker1.Value = DateTime.Now;
         }
 
 
         private void btnSimpan_Click_1(object sender, EventArgs e)
         {
-            
+
             string nama = txtobat?.textBox?.Text ?? string.Empty;
             string jenis = cbjenis?.Text ?? string.Empty;
             string jumlahStr = txtjumlah?.textBox?.Text ?? string.Empty;
             string expired = dateTimePicker1.Value.ToString("dd/MM/yyyy");
             string lokasi = txtpenyimpanan?.textBox?.Text ?? string.Empty;
 
-            
+
             if (string.IsNullOrWhiteSpace(nama) || string.IsNullOrWhiteSpace(jenis) ||
                 string.IsNullOrWhiteSpace(jumlahStr) || string.IsNullOrWhiteSpace(lokasi))
             {
@@ -130,31 +130,7 @@ namespace Lab
             label9.Visible = true;
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            if (e.RowIndex < 0) return;
-            if (!modeEdit) return;
-
-            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-            selectedId = Convert.ToInt32(row.Cells["Id"].Value);
-
-            txtobat.Text = row.Cells["Nama"].Value?.ToString();
-            cbjenis.SelectedItem = row.Cells["Jenis"].Value?.ToString();
-            txtjumlah.Text = row.Cells["Jumlah"].Value?.ToString();
-            txtpenyimpanan.Text = row.Cells["Lokasi penyimpanan"].Value?.ToString();
-
-            // Parse tanggal expired
-            if (DateTime.TryParseExact(row.Cells["Date Expired"].Value?.ToString(),
-                "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime tgl))
-            {
-                dateTimePicker1.Value = tgl;
-            }
-
-            btnSimpan.Text = "Update";
-            btnSimpan.BackColor = Color.Orange;
-            modeEdit = false;
-        }
+ 
 
         private void btnHapus_Click_1(object sender, EventArgs e)
         {
@@ -208,6 +184,33 @@ namespace Lab
                 label7.Visible = false;
                 label7.ForeColor = Color.Red;
             }
+        }
+
+        private void dataGridView1_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex < 0) return;
+            if (!modeEdit) return;
+
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+            selectedId = Convert.ToInt32(row.Cells["Id"].Value);
+
+            txtobat.textBox.Text = row.Cells["Nama"].Value?.ToString();
+            cbjenis.SelectedItem = row.Cells["Jenis"].Value?.ToString();
+            txtjumlah.textBox.Text = row.Cells["Jumlah"].Value?.ToString();
+            txtpenyimpanan.textBox.Text = row.Cells["Lokasi penyimpanan"].Value?.ToString();
+
+            // Parse tanggal expired
+            if (DateTime.TryParseExact(row.Cells["Date Expired"].Value?.ToString(),
+                "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime tgl))
+            {
+                dateTimePicker1.Value = tgl;
+            }
+
+            btnSimpan.Text = "Update";
+            btnSimpan.BackColor = Color.Orange;
+            modeEdit = false;
+            label9.Visible = false;
         }
     }
 }

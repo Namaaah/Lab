@@ -19,8 +19,8 @@ namespace Lab
         {
             InitializeComponent();
             _dashboard = dashboard;
-            DatabaseHelper.InitDatabase(); 
-            MuatDataPetugas();              
+            DatabaseHelper.InitDatabase();
+            MuatDataPetugas();
         }
 
         private void RefreshLog()
@@ -137,7 +137,7 @@ namespace Lab
             }
         }
 
-     
+
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -152,7 +152,7 @@ namespace Lab
             selectedId = -1;
             modeEdit = false;
             Buttons2.Text = "Simpan";
-            Buttons2.BackColor = Color.Green; // Sesuaikan warna aslinya
+            Buttons2.BackColor = Color.Orange;
         }
 
         private void BersihkanForm()
@@ -214,23 +214,28 @@ namespace Lab
 
             if (result == DialogResult.Yes)
             {
-              
+
                 string gender = selectionRow.Cells["Gender"].Value?.ToString();
                 string umur = selectionRow.Cells["Umur"].Value?.ToString();
                 string shift = selectionRow.Cells["Shift"].Value?.ToString();
                 string kelas = selectionRow.Cells["Kelas"].Value?.ToString();
 
                 DatabaseHelper.HapusPetugas(id);
-              
+
                 DatabaseHelper.TambahLog(
                     $"Admin menghapus petugas: Nama: \"{nama}\" | Gender: \"{gender}\" | " +
                     $"Umur: \"{umur}\" | Shift: \"{shift}\" | Kelas: \"{kelas}\""
                 );
 
-                
+
                 MuatDataPetugas();
                 RefreshLog();
             }
+        }
+
+        private void Petugas_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

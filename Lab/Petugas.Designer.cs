@@ -569,6 +569,7 @@
             Controls.Add(shapedPanel1);
             Name = "Petugas";
             Size = new Size(934, 577);
+            Load += Petugas_Load;
             shapedPanel3.ResumeLayout(false);
             shapedPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
